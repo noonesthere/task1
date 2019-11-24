@@ -1,1 +1,14 @@
-
+*.*~
+*.iml
+*.class
+*.war
+*.log
+.gradle
+.idea
+out
+build
+dist
+target
+nbproject/
+nbbuild.xml
+jboss-web.xml
