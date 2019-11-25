@@ -3,12 +3,24 @@
  */
 package ua.com.dzlobenets.task1;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
+
+    public static final int BOUND = 1_000_000;
+    public static final long MAX_NUMBERS = 10_000_000_000L;
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        final int a = ThreadLocalRandom.current().nextInt(BOUND); // any int you want
+        System.out.println("Selected number:" + a);
+        final SummaryMatcher summaryMatcher = new SummaryMatcher(a);
+
+        //emulate system.in 10_000_000_000 ints or simple IntStream.range for test
+        ThreadLocalRandom.current().ints(MAX_NUMBERS, 0, BOUND)
+//        IntStream.rangeClosed(0, Integer.MAX_VALUE)
+                .forEach(summaryMatcher::add);
+        // do work
+        summaryMatcher.calculate();
     }
 }
